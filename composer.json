@@ -1,0 +1,23 @@
+{
+    "name": "UF FormGenerator Example",
+    "type": "sprinkle",
+    "description": "Form generator Example for UserFrosting V4",
+    "keywords": ["Form", "generator", "userfrosting"],
+    "homepage": "https://github.com/lcharette/UF_FormGeneratorExample",
+    "license" : "MIT",
+    "authors" : [
+        {
+            "name": "Louis Charette",
+            "homepage": "https://github.com/lcharette"
+        }
+    ],
+    "version": "0.0.1",
+    "require": {
+        "php": ">=5.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "UserFrosting\\Sprinkle\\FormGeneratorExample\\": "src/"
+        }
+    }
+}
