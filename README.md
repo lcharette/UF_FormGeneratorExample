@@ -14,3 +14,8 @@ Edit UserFrosting `app/sprinkles/sprinkles.json` file and add `FormGeneratorExam
 Navigate to `http://YourDomain.com/projects`.
 
 This demo is not linked to any database tables, so changes are not actually saved ;)
+
+![Screenshot 1](/screenshots/UF_FormGeneratorExample1.png?raw=true)
+![Screenshot 1](/screenshots/UF_FormGeneratorExample2.png?raw=true)
+![Screenshot 1](/screenshots/UF_FormGeneratorExample3.png?raw=true)
+![Screenshot 1](/screenshots/UF_FormGeneratorExample4.png?raw=true)
