@@ -9,9 +9,6 @@
                 "message" : "VALIDATE.REQUIRED"
             }
         },
-        "sanitizers" : {
-            "raw" : ""
-        },
         "form" : {
             "type" : "text",
             "label" : "Project name",
@@ -21,9 +18,6 @@
     },
     "description" : {
         "validators" : {},
-        "sanitizers" : {
-            "raw" : ""
-        },
         "form" : {
             "type" : "textarea",
             "label" : "Project description",
