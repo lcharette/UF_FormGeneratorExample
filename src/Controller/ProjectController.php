@@ -108,7 +108,7 @@ class ProjectController {
             "box_title" => "Create project",
             "submit_button" => "Create",
             "form_action" => "/projects",
-            "fields" => $schema->genereteForm(),
+            "fields" => $schema->generateForm(),
             "validators" => $validator->rules()
         ]);
     }
@@ -193,7 +193,7 @@ class ProjectController {
             "submit_button" => "Edit",
             "form_action" => "/projects/".$args['project_id'],
             "form_method" => "PUT", //Send form using PUT instead of "POST"
-            "fields" => $schema->genereteForm(),
+            "fields" => $schema->generateForm(),
             "validators" => $validator->rules()
         ]);
     }
