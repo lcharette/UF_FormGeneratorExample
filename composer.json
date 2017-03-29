@@ -1,6 +1,6 @@
 {
-    "name": "UF FormGenerator Example",
-    "type": "sprinkle",
+    "name": "lcharette/UF_FormGeneratorExample",
+    "type": "userfrosting-sprinkle",
     "description": "Form generator Example for UserFrosting V4",
     "keywords": ["Form", "generator", "userfrosting"],
     "homepage": "https://github.com/lcharette/UF_FormGeneratorExample",
@@ -19,5 +19,8 @@
         "psr-4": {
             "UserFrosting\\Sprinkle\\FormGeneratorExample\\": "src/"
         }
+    },
+    "extra": {
+        "installer-name": "FormGeneratorExample"
     }
 }
