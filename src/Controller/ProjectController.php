@@ -8,10 +8,13 @@
 namespace UserFrosting\Sprinkle\FormGeneratorExample\Controller;
 
 use Interop\Container\ContainerInterface;
-use UserFrosting\Sprinkle\FormGenerator\RequestSchema;
 use UserFrosting\Fortress\RequestDataTransformer;
+use UserFrosting\Fortress\RequestSchema;
 use UserFrosting\Fortress\ServerSideValidator;
 use UserFrosting\Fortress\Adapter\JqueryValidationAdapter;
+use UserFrosting\Sprinkle\FormGenerator\Form;
+use UserFrosting\Support\Repository\Loader\YamlFileLoader;
+use UserFrosting\Fortress\RequestSchema\RequestSchemaRepository;
 
 /**
  * ProjectController Class
@@ -100,7 +103,7 @@ class ProjectController {
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
-        $schema->initForm();
+        $form = new Form();
 
         // Using custom form here to add the javascript we need fo Typeahead.
         $this->ci->view->render($response, "FormGenerator/modal.html.twig", [
@@ -108,7 +111,7 @@ class ProjectController {
             "box_title" => "Create project",
             "submit_button" => "Create",
             "form_action" => "/projects",
-            "fields" => $schema->generateForm(),
+            "fields" => $form->generate(),
             "validators" => $validator->rules()
         ]);
     }
@@ -184,7 +187,7 @@ class ProjectController {
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
-        $schema->initForm($project);
+        $form = new Form($project);
 
         // Render the template / form
         $this->ci->view->render($response, "FormGenerator/modal.html.twig", [
@@ -193,7 +196,7 @@ class ProjectController {
             "submit_button" => "Edit",
             "form_action" => "/projects/".$args['project_id'],
             "form_method" => "PUT", //Send form using PUT instead of "POST"
-            "fields" => $schema->generateForm(),
+            "fields" => $form->generate(),
             "validators" => $validator->rules()
         ]);
     }

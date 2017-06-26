@@ -2,13 +2,24 @@
 This Sprinkle provides a summary example on how to use the [FormGenerator](https://github.com/lcharette/UF_FormGenerator) sprinkle.
 
 ## Install
-`cd` into the sprinkle directory of UserFrosting and clone as submodule:
+Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/UF_FormGeneratorExample": "~2.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
+
 ```
-git submodule add git@github.com:lcharette/UF_FormGeneratorExample.git FormGeneratorExample
+{
+    "require": {
+        "lcharette/uf_userprofile": "~2.0.0"
+    },
+    "base": [
+        "core",
+        "account",
+        "admin",
+        "FormGenerator",
+        "FormGeneratorExample"
+    ]
+}
 ```
 
-### Add to the sprinkle list
-Edit UserFrosting `app/sprinkles/sprinkles.json` file and add `FormGeneratorExample` to the sprinkle list to enable it globally. Don't forget to install [FormGenerator](https://github.com/lcharette/UF_FormGenerator) too, then run `composer update` and `npm run uf-assets-install`.
+Run `composer update` then `composer run-script bake` to install the sprinkle.
 
 ### Try it !
 Navigate to `http://YourDomain.com/projects`.
