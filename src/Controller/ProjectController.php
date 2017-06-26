@@ -103,7 +103,7 @@ class ProjectController {
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
-        $form = new Form();
+        $form = new Form($schema);
 
         // Using custom form here to add the javascript we need fo Typeahead.
         $this->ci->view->render($response, "FormGenerator/modal.html.twig", [
@@ -187,7 +187,7 @@ class ProjectController {
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
-        $form = new Form($project);
+        $form = new Form($schema, $project);
 
         // Render the template / form
         $this->ci->view->render($response, "FormGenerator/modal.html.twig", [
