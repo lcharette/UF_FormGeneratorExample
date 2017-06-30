@@ -22,7 +22,7 @@ Edit UserFrosting `app/sprinkles.json` file and add the following to the `requir
 Run `composer update` then `php bakery bake` to install the sprinkle.
 
 ### Try it !
-Navigate to `http://YourDomain.com/projects`.
+Navigate to `http://YourDomain.com/formgenerator`.
 
 This demo is not linked to any database tables, so changes are not actually saved ;)
 

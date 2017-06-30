@@ -19,9 +19,9 @@ use UserFrosting\Fortress\RequestSchema\RequestSchemaRepository;
 /**
  * ProjectController Class
  *
- * Controller class for /projects/* URLs.
+ * Controller class for /formgenerator/* URLs.
  */
-class ProjectController {
+class FormGeneratorExampleController {
 
     /**
      * @var ContainerInterface The global container object, which holds all your services.
@@ -43,14 +43,21 @@ class ProjectController {
             [
                 "id" => 1,
                 "name" => "Foo project",
+                "owner" => "Foo",
                 "description" => "The foo project is awesome, but not available.",
-                "status" => 0
+                "status" => 0,
+                "completion" => 100,
+                "active" => false
             ],
             [
                 "id" => 2,
                 "name" => "Bar project",
+                "owner" => "",
                 "description" => "The bar project is less awesome, but at least it's open.",
-                "status" => 1
+                "status" => 1,
+                "hiddenString" => "The Bar secret code is...",
+                "completion" => 12,
+                "active" => true
             ]
         ]);
     }
@@ -72,7 +79,7 @@ class ProjectController {
         //$projects = Project::all();
         $projects = $this->projects;
 
-        $this->ci->view->render($response, 'pages/projects.twig', [
+        $this->ci->view->render($response, 'pages/formgenerator.twig', [
            "projects" => $projects
         ]);
     }
@@ -99,7 +106,7 @@ class ProjectController {
         $get = $request->getQueryParams();
 
         // Load validator rules
-        $schema = new RequestSchema("schema://forms/project.json");
+        $schema = new RequestSchema("schema://forms/formgenerator.json");
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
@@ -110,7 +117,7 @@ class ProjectController {
             "box_id" => $get['box_id'],
             "box_title" => "Create project",
             "submit_button" => "Create",
-            "form_action" => "/projects",
+            "form_action" => "/formgenerator",
             "fields" => $form->generate(),
             "validators" => $validator->rules()
         ]);
@@ -135,7 +142,7 @@ class ProjectController {
         $post = $request->getParsedBody();
 
         // Load the request schema
-        $schema = new RequestSchema("schema://forms/project.json");
+        $schema = new RequestSchema("schema://forms/formgenerator.json");
 
         // Whitelist and set parameter defaults
         $transformer = new RequestDataTransformer($schema);
@@ -154,6 +161,7 @@ class ProjectController {
 
         // Success message
         $ms->addMessageTranslated("success", "Project successfully created (or not)");
+        $ms->addMessageTranslated("info", "The form data: <br />" . print_r($data, true));
         return $response->withStatus(200);
     }
 
@@ -183,7 +191,7 @@ class ProjectController {
         $project = $this->projects[$args['project_id'] - 1];
 
         // Load validator rules
-        $schema = new RequestSchema("schema://forms/project.json");
+        $schema = new RequestSchema("schema://forms/formgenerator.json");
         $validator = new JqueryValidationAdapter($schema, $this->ci->translator);
 
         // Generate the form
@@ -194,7 +202,7 @@ class ProjectController {
             "box_id" => $get['box_id'],
             "box_title" => "Edit project",
             "submit_button" => "Edit",
-            "form_action" => "/projects/".$args['project_id'],
+            "form_action" => "/formgenerator/".$args['project_id'],
             "form_method" => "PUT", //Send form using PUT instead of "POST"
             "fields" => $form->generate(),
             "validators" => $validator->rules()
@@ -224,7 +232,7 @@ class ProjectController {
         $post = $request->getParsedBody();
 
         // Load the request schema
-        $schema = new RequestSchema("schema://forms/project.json");
+        $schema = new RequestSchema("schema://forms/formgenerator.json");
 
         // Whitelist and set parameter defaults
         $transformer = new RequestDataTransformer($schema);
@@ -242,6 +250,7 @@ class ProjectController {
 
         //Success message!
         $ms->addMessageTranslated("success", "Project successfully updated (or not)");
+        $ms->addMessageTranslated("info", "The form data: <br />" . print_r($data, true));
         return $response->withStatus(200);
     }
 
