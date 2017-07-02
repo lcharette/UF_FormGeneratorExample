@@ -2,10 +2,10 @@
     "name" : {
         "validators" : {
             "length" : {
-                "min" : 1,
                 "max" : 100
             },
             "required" : {
+                "label" : "Project name",
                 "message" : "VALIDATE.REQUIRED"
             }
         },
@@ -17,7 +17,6 @@
         }
     },
     "owner" : {
-        "validators" : {},
         "form" : {
             "type" : "text",
             "label" : "Project Owner",
@@ -28,7 +27,6 @@
         }
     },
     "description" : {
-        "validators" : {},
         "form" : {
             "type" : "textarea",
             "label" : "Project description",
@@ -55,7 +53,6 @@
         }
     },
     "active" : {
-        "validators" : {},
         "form" : {
             "type" : "checkbox",
             "label" : "Active"
@@ -68,7 +65,8 @@
                 "max" : 100
             },
             "required" : {
-                "message" : "VALIDATE_REQUIRED"
+                "label" : "Project completion",
+                "message" : "VALIDATE.REQUIRED"
             }
         },
         "form" : {

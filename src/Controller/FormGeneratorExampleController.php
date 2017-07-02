@@ -79,7 +79,7 @@ class FormGeneratorExampleController {
         //$projects = Project::all();
         $projects = $this->projects;
 
-        $this->ci->view->render($response, 'pages/formgenerator.twig', [
+        $this->ci->view->render($response, 'pages/formgenerator.html.twig', [
            "projects" => $projects
         ]);
     }
@@ -119,7 +119,7 @@ class FormGeneratorExampleController {
             "submit_button" => "Create",
             "form_action" => "/formgenerator",
             "fields" => $form->generate(),
-            "validators" => $validator->rules()
+            "validators" => $validator->rules('json', true)
         ]);
     }
 
@@ -205,7 +205,7 @@ class FormGeneratorExampleController {
             "form_action" => "/formgenerator/".$args['project_id'],
             "form_method" => "PUT", //Send form using PUT instead of "POST"
             "fields" => $form->generate(),
-            "validators" => $validator->rules()
+            "validators" => $validator->rules('json', true)
         ]);
     }
 
