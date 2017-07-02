@@ -2,12 +2,12 @@
 This Sprinkle provides a summary example on how to use the [FormGenerator](https://github.com/lcharette/UF_FormGenerator) sprinkle.
 
 ## Install
-Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "~2.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
+Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^2.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
 
 ```
 {
     "require": {
-        "lcharette/uf_formgeneratorexample": "~2.0.0"
+        "lcharette/uf_formgeneratorexample": "^2.0.0"
     },
     "base": [
         "core",
