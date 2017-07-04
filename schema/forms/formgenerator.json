@@ -2,7 +2,8 @@
     "name" : {
         "validators" : {
             "length" : {
-                "max" : 100
+                "max" : 100,
+                "message" : "VALIDATE.MAX_LENGTH"
             },
             "required" : {
                 "label" : "Project name",
@@ -62,7 +63,8 @@
         "validators" : {
             "range" : {
                 "min" : 0,
-                "max" : 100
+                "max" : 100,
+                "message" : "VALIDATE.RANGE"
             },
             "required" : {
                 "label" : "Project completion",
@@ -72,8 +74,6 @@
         "form" : {
             "type" : "number",
             "icon" : "fa-percent",
-            "min": 0,
-            "max" : 100,
             "default" : 10,
             "label" : "Project completion"
         }
