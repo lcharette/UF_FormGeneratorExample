@@ -1,5 +1,8 @@
 # Change Log
 
+## 2.0.3
+- Fixed validator messages (requires UF 4.1.4)
+
 ## 2.0.2
 - Updated to FormGenerator 2.1.0
 - Added more example fields
