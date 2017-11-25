@@ -162,7 +162,7 @@ class FormGeneratorExampleController {
         // Success message
         $ms->addMessageTranslated("success", "Project successfully created (or not)");
         $ms->addMessageTranslated("info", "The form data: <br />" . print_r($data, true));
-        return $response->withStatus(200);
+        return $response->withJson([], 200, JSON_PRETTY_PRINT);
     }
 
     /**
@@ -251,7 +251,7 @@ class FormGeneratorExampleController {
         //Success message!
         $ms->addMessageTranslated("success", "Project successfully updated (or not)");
         $ms->addMessageTranslated("info", "The form data: <br />" . print_r($data, true));
-        return $response->withStatus(200);
+        return $response->withJson([], 200, JSON_PRETTY_PRINT);
     }
 
 
@@ -275,6 +275,6 @@ class FormGeneratorExampleController {
 
         // Nice and simple message
         $ms->addMessageTranslated("success", "Project successfully deleted (or not)");
-        return $response->withStatus(200);
+        return $response->withJson([], 200, JSON_PRETTY_PRINT);
     }
 }
