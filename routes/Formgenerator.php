@@ -1,9 +1,10 @@
 <?php
-/**
- * FormGenerator Example (https://github.com/lcharette/UF_FormGeneratorExample)
+
+/*
+ * FormGenerator Example
  *
- * @author Louis Charette
- * @link https://github.com/lcharette
+ * @link https://github.com/lcharette/UF_FormGeneratorExample
+ * @copyright Copyright (c) 2016 Louis Charette
  */
 
 $app->group('/formgenerator', function () {
