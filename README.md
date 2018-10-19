@@ -1,12 +1,12 @@
 # Form Generator Sprinkle Example
 
+[![StyleCI](https://github.styleci.io/repos/80257783/shield?branch=master)](https://github.styleci.io/repos/80257783) [![UserFrosting Version](https://img.shields.io/badge/UserFrosting->=%204.1-brightgreen.svg)](https://github.com/userfrosting/UserFrosting) [![Donate](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-brightgreen.svg)](https://ko-fi.com/A7052ICP)
+
 This Sprinkle provides a summary example on how to use the [FormGenerator](https://github.com/lcharette/UF_FormGenerator) sprinkle for [UserFrosting 4](https://www.userfrosting.com).
 
 # Help and Contributing
 
 If you need help using this sprinkle or found any bug, feels free to open an issue or submit a pull request. You can also find me on the [UserFrosting Chat](https://chat.userfrosting.com/) most of the time for direct support. 
-
-<a href='https://ko-fi.com/A7052ICP' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi4.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
 # Installation
 Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^2.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
