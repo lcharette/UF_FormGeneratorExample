@@ -31,7 +31,7 @@
         "form" : {
             "type" : "textarea",
             "label" : "Project description",
-            "icon" : "fa-pencil",
+            "icon" : "fa-pencil-alt",
             "placeholder" : "Project description",
             "rows" : 5
         }
@@ -93,4 +93,3 @@
         }
     }
 }
-
