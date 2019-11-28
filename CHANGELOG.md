@@ -2,6 +2,7 @@
 
 ## 3.0.0
 - Update FormGenerator version to 3.0.0
+- Updated icons to FontAwesome 5
 
 ## 2.0.3
 - Fixed validator messages (requires UF 4.1.4)
