@@ -82,7 +82,7 @@ class FormGeneratorExampleController
         $projects = $this->projects;
 
         $this->ci->view->render($response, 'pages/formgenerator.html.twig', [
-           'projects' => $projects,
+            'projects' => $projects,
         ]);
     }
 
