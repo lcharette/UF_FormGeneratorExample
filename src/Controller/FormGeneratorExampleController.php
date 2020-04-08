@@ -1,10 +1,11 @@
 <?php
 
 /*
- * FormGenerator Example
+ * Form Generator Example
  *
- * @link https://github.com/lcharette/UF_FormGeneratorExample
- * @copyright Copyright (c) 2016 Louis Charette
+ * @link      https://github.com/lcharette/UF_FormGeneratorExample
+ * @copyright Copyright (c) 2020 Louis Charette
+ * @license   https://github.com/lcharette/UF_FormGeneratorExample/blob/master/LICENSE (MIT License)
  */
 
 namespace UserFrosting\Sprinkle\FormGeneratorExample\Controller;
@@ -70,8 +71,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function main($request, $response, $args)
     {
@@ -96,8 +95,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function createForm($request, $response, $args)
     {
@@ -133,8 +130,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function create($request, $response, $args)
     {
@@ -166,7 +161,7 @@ class FormGeneratorExampleController
 
         // Success message
         $ms->addMessageTranslated('success', 'Project successfully created (or not)');
-        $ms->addMessageTranslated('info', 'The form data: <br />'.print_r($data, true));
+        $ms->addMessageTranslated('info', 'The form data: <br />' . print_r($data, true));
 
         return $response->withJson([], 200, JSON_PRETTY_PRINT);
     }
@@ -181,8 +176,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function editForm($request, $response, $args)
     {
@@ -209,7 +202,7 @@ class FormGeneratorExampleController
             'box_id'        => $get['box_id'],
             'box_title'     => 'Edit project',
             'submit_button' => 'Edit',
-            'form_action'   => '/formgenerator/'.$args['project_id'],
+            'form_action'   => '/formgenerator/' . $args['project_id'],
             'form_method'   => 'PUT', //Send form using PUT instead of "POST"
             'fields'        => $form->generate(),
             'validators'    => $validator->rules('json', true),
@@ -223,8 +216,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function update($request, $response, $args)
     {
@@ -259,7 +250,7 @@ class FormGeneratorExampleController
 
         //Success message!
         $ms->addMessageTranslated('success', 'Project successfully updated (or not)');
-        $ms->addMessageTranslated('info', 'The form data: <br />'.print_r($data, true));
+        $ms->addMessageTranslated('info', 'The form data: <br />' . print_r($data, true));
 
         return $response->withJson([], 200, JSON_PRETTY_PRINT);
     }
@@ -271,8 +262,6 @@ class FormGeneratorExampleController
      * @param mixed $request
      * @param mixed $response
      * @param mixed $args
-     *
-     * @return void
      */
     public function delete($request, $response, $args)
     {
