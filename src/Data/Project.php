@@ -46,7 +46,8 @@ class Project
     }
 
     /**
-     * @param  string                    $id
+     * @param string $id
+     *
      * @return array<string,string>|null
      */
     public static function find(string $id): ?array

@@ -10,8 +10,8 @@
 
 namespace UserFrosting\Sprinkle\FormGeneratorExample\Controller;
 
-use Slim\Http\Response;
 use Slim\Http\Request;
+use Slim\Http\Response;
 use UserFrosting\Fortress\Adapter\JqueryValidationAdapter;
 use UserFrosting\Fortress\RequestDataTransformer;
 use UserFrosting\Fortress\RequestSchema;
