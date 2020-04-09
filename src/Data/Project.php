@@ -16,7 +16,8 @@ use Illuminate\Support\Collection;
  * Project Class.
  *
  * Simulate a model wich would return a list of projects
- * for demo purpose.
+ * for demo purpose. This can be substituded in FormGeneratorExampleController
+ * by a real Eloquent Model
  */
 class Project
 {

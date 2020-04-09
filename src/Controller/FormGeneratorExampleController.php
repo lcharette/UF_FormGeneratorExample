@@ -111,8 +111,8 @@ class FormGeneratorExampleController extends SimpleController
         }
 
         // Create the item.
-        // This is where the project would be saved to the database
-        //
+        // This is where the project would be saved to the database.
+        // This can be replace by a database Model.
         // $project = new Project($data);
         // $project->save();
 
