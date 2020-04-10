@@ -13,7 +13,7 @@
     ],
     "require": {
         "php": ">=7.1",
-        "lcharette/uf_formgenerator": "dev-develop"
+        "lcharette/uf_formgenerator": "^3.0.0 | ^4.0.0"
     },
     "autoload": {
         "psr-4": {

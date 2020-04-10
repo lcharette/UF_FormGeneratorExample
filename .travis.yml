@@ -10,13 +10,17 @@ php:
 
 env:
   matrix:
-    - UF_BRANCH=4.3.*
-    - UF_BRANCH=4.4.*
-    - UF_BRANCH=dev-develop
+    - FG_VERSION=3.0.0 UF_BRANCH=4.3.*
+    - FG_VERSION=3.0.0 UF_BRANCH=4.4.*
+    - FG_VERSION=3.0.0 UF_BRANCH=dev-develop
+    - FG_VERSION=4.0.0 UF_BRANCH=4.3.*
+    - FG_VERSION=4.0.0 UF_BRANCH=4.4.*
+    - FG_VERSION=4.0.0 UF_BRANCH=dev-develop
 
 matrix:
   allow_failures:
-    - UF_BRANCH=dev-develop
+    - FG_VERSION=3.0.0 UF_BRANCH=dev-develop
+    - FG_VERSION=4.0.0 UF_BRANCH=dev-develop
 
 cache:
   directories:
@@ -35,7 +39,8 @@ before_install:
 
 before_script:
   # install deps and UF
-  - composer install
+  - if [ "$FG_VERSION" != "" ]; then composer require "lcharette/uf_formgenerator:^${FG_VERSION}" --no-update; fi;
+  - travis_retry composer install --prefer-source --no-interaction
   - php bakery build-assets
 
 script:

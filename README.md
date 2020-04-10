@@ -28,7 +28,7 @@ This Sprinkle provides a summary example on how to use the [FormGenerator](https
 If you need help using this sprinkle or found any bug, feels free to open an issue or submit a pull request. You can also find me on the [UserFrosting Chat](https://chat.userfrosting.com/) most of the time for direct support.
 
 # Installation
-Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^3.1.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
+Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^4.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
 
 ```json
 {
