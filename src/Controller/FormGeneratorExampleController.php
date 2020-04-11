@@ -59,6 +59,9 @@ class FormGeneratorExampleController extends SimpleController
      */
     public function createForm(Request $request, Response $response, array $args): Response
     {
+        /** @var \UserFrosting\Sprinkle\Core\Router $router */
+        $router = $this->ci->router;
+
         // Request GET data
         $get = $request->getQueryParams();
 
@@ -74,7 +77,7 @@ class FormGeneratorExampleController extends SimpleController
             'box_id'        => $get['box_id'],
             'box_title'     => 'Create project',
             'submit_button' => 'Create',
-            'form_action'   => '/formgenerator',
+            'form_action'   => $router->pathFor('FG.create', $args),
             'fields'        => $form->generate(),
             'validators'    => $validator->rules('json', true),
         ]);
