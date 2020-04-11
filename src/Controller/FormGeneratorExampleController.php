@@ -1,109 +1,66 @@
 <?php
 
 /*
- * FormGenerator Example
+ * Form Generator Example
  *
- * @link https://github.com/lcharette/UF_FormGeneratorExample
- * @copyright Copyright (c) 2016 Louis Charette
+ * @link      https://github.com/lcharette/UF_FormGeneratorExample
+ * @copyright Copyright (c) 2020 Louis Charette
+ * @license   https://github.com/lcharette/UF_FormGeneratorExample/blob/master/LICENSE (MIT License)
  */
 
 namespace UserFrosting\Sprinkle\FormGeneratorExample\Controller;
 
-use Interop\Container\ContainerInterface;
+use Slim\Http\Request;
+use Slim\Http\Response;
 use UserFrosting\Fortress\Adapter\JqueryValidationAdapter;
 use UserFrosting\Fortress\RequestDataTransformer;
 use UserFrosting\Fortress\RequestSchema;
 use UserFrosting\Fortress\ServerSideValidator;
+use UserFrosting\Sprinkle\Core\Controller\SimpleController;
 use UserFrosting\Sprinkle\FormGenerator\Form;
+use UserFrosting\Sprinkle\FormGeneratorExample\Data\Project;
+use UserFrosting\Support\Exception\NotFoundException;
 
 /**
- * ProjectController Class.
+ * FormGeneratorExampleController Class.
  *
  * Controller class for /formgenerator/* URLs.
  */
-class FormGeneratorExampleController
+class FormGeneratorExampleController extends SimpleController
 {
     /**
-     * @var ContainerInterface The global container object, which holds all your services.
-     */
-    protected $ci;
-
-    protected $projects;
-
-    /**
-     * Create a new ProjectController object.
+     * Display a list of all the projects
+     * Request type: GET.
      *
-     * @param ContainerInterface $ci The main UserFrosting app.
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function __construct(ContainerInterface $ci)
+    public function main(Request $request, Response $response, array $args): Response
     {
-        $this->ci = $ci;
+        // Get all projects
+        // This can be replace by a database Model. We hardcode it here in the helper class for demo purposes.
+        $projects = Project::all();
 
-        // For demo purpose
-        $this->projects = collect([
-            [
-                'id'          => 1,
-                'name'        => 'Foo project',
-                'owner'       => 'Foo',
-                'description' => 'The foo project is awesome, but not available.',
-                'status'      => 0,
-                'completion'  => 100,
-                'active'      => false,
-            ],
-            [
-                'id'           => 2,
-                'name'         => 'Bar project',
-                'owner'        => '',
-                'description'  => "The bar project is less awesome, but at least it's open.",
-                'status'       => 1,
-                'hiddenString' => 'The Bar secret code is...',
-                'completion'   => 12,
-                'active'       => true,
-            ],
-        ]);
-    }
-
-    /**
-     * mainList function.
-     * Used to display a list of all the projects this user have access to or can manage.
-     *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
-     */
-    public function main($request, $response, $args)
-    {
-
-        // Get a list of all projects
-        // This should be a databse query. We hardcode it here for demo purposes
-        //$projects = Project::all();
-        $projects = $this->projects;
-
-        $this->ci->view->render($response, 'pages/formgenerator.html.twig', [
+        return $this->ci->view->render($response, 'pages/formgenerator.html.twig', [
             'projects' => $projects,
         ]);
     }
 
     /**
-     * createForm function.
      * Renders the form for creating a new project.
      *
      * This does NOT render a complete page.  Instead, it renders the HTML for the form, which can be embedded in other pages.
      * The form is rendered in "modal" (for popup) or "panel" mode, depending on the template used
      *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function createForm($request, $response, $args)
+    public function createForm(Request $request, Response $response, array $args): Response
     {
-
-        // Get the alert message stream
-        $ms = $this->ci->alerts;
+        /** @var \UserFrosting\Sprinkle\Core\Router $router */
+        $router = $this->ci->router;
 
         // Request GET data
         $get = $request->getQueryParams();
@@ -116,34 +73,30 @@ class FormGeneratorExampleController
         $form = new Form($schema);
 
         // Using custom form here to add the javascript we need fo Typeahead.
-        $this->ci->view->render($response, 'FormGenerator/modal.html.twig', [
+        return $this->ci->view->render($response, 'FormGenerator/modal.html.twig', [
             'box_id'        => $get['box_id'],
             'box_title'     => 'Create project',
             'submit_button' => 'Create',
-            'form_action'   => '/formgenerator',
+            'form_action'   => $router->pathFor('FG.create', $args),
             'fields'        => $form->generate(),
             'validators'    => $validator->rules('json', true),
         ]);
     }
 
     /**
-     * create function.
      * Processes the request to create a new project.
      *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function create($request, $response, $args)
+    public function create(Request $request, Response $response, array $args): Response
     {
-
         // Get the alert message stream
         $ms = $this->ci->alerts;
 
         // Request POST data
-        $post = $request->getParsedBody();
+        $post = $request->getParsedBody() ?: [];
 
         // Load the request schema
         $schema = new RequestSchema('schema://forms/formgenerator.json');
@@ -161,41 +114,44 @@ class FormGeneratorExampleController
         }
 
         // Create the item.
-        // This is where the project would be saved to the database
-        //$project = ...
+        // This is where the project would be saved to the database.
+        // This can be replace by a database Model.
+        // $project = new Project($data);
+        // $project->save();
 
         // Success message
         $ms->addMessageTranslated('success', 'Project successfully created (or not)');
-        $ms->addMessageTranslated('info', 'The form data: <br />'.print_r($data, true));
+        $ms->addMessageTranslated('info', 'The form data: <br />' . print_r($data, true));
 
-        return $response->withJson([], 200, JSON_PRETTY_PRINT);
+        return $response->withJson([]);
     }
 
     /**
-     * editForm function.
      * Renders the form for editing an existing project.
      *
      * This does NOT render a complete page.  Instead, it renders the HTML for the form, which can be embedded in other pages.
      * The form is rendered in "modal" (for popup) or "panel" mode, depending on the template used
      *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function editForm($request, $response, $args)
+    public function editForm(Request $request, Response $response, array $args): Response
     {
-
-        // Get the alert message stream
-        $ms = $this->ci->alerts;
+        /** @var \UserFrosting\Sprinkle\Core\Router $router */
+        $router = $this->ci->router;
 
         // Request GET data
         $get = $request->getQueryParams();
 
-        // Get the project to edit
-        // This will typically be a databse query. We hardcode it here for demo purposes
-        $project = $this->projects[$args['project_id'] - 1];
+        // Get the project to edit.
+        // This can be replace by a database Model. We hardcode it here in the helper class for demo purposes.
+        $project = Project::find($args['project_id']);
+
+        // Make sure a project was found.
+        if (!$project) {
+            throw new NotFoundException('Project not found');
+        }
 
         // Load validator rules
         $schema = new RequestSchema('schema://forms/formgenerator.json');
@@ -205,11 +161,11 @@ class FormGeneratorExampleController
         $form = new Form($schema, $project);
 
         // Render the template / form
-        $this->ci->view->render($response, 'FormGenerator/modal.html.twig', [
+        return $this->ci->view->render($response, 'FormGenerator/modal.html.twig', [
             'box_id'        => $get['box_id'],
             'box_title'     => 'Edit project',
             'submit_button' => 'Edit',
-            'form_action'   => '/formgenerator/'.$args['project_id'],
+            'form_action'   => $router->pathFor('FG.update', $args),
             'form_method'   => 'PUT', //Send form using PUT instead of "POST"
             'fields'        => $form->generate(),
             'validators'    => $validator->rules('json', true),
@@ -217,27 +173,24 @@ class FormGeneratorExampleController
     }
 
     /**
-     * update function.
      * Processes the request to update an existing project's details.
      *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function update($request, $response, $args)
+    public function update(Request $request, Response $response, array $args): Response
     {
-
         // Get the alert message stream
         $ms = $this->ci->alerts;
 
-        // Get the target object
-        $project_id = ($args['project_id']) ? $args['project_id'] : 0;
-        $project = $this->projects[$project_id];
+        // Get the target object & make sure a project was found.
+        if (!$project = Project::find($args['project_id'])) {
+            throw new NotFoundException('Project not found');
+        }
 
         // Request POST data
-        $post = $request->getParsedBody();
+        $post = $request->getParsedBody() ?: [];
 
         // Load the request schema
         $schema = new RequestSchema('schema://forms/formgenerator.json');
@@ -256,36 +209,39 @@ class FormGeneratorExampleController
 
         // Update the project
         // This is where you would save the changes to the database...
+        // $project->fill($data)->save();
 
         //Success message!
         $ms->addMessageTranslated('success', 'Project successfully updated (or not)');
-        $ms->addMessageTranslated('info', 'The form data: <br />'.print_r($data, true));
+        $ms->addMessageTranslated('info', 'The form data: <br />' . print_r($data, true));
 
-        return $response->withJson([], 200, JSON_PRETTY_PRINT);
+        return $response->withJson([]);
     }
 
     /**
-     * delete function.
      * Processes the request to delete an existing project.
      *
-     * @param mixed $request
-     * @param mixed $response
-     * @param mixed $args
-     *
-     * @return void
+     * @param Request  $request
+     * @param Response $response
+     * @param string[] $args
      */
-    public function delete($request, $response, $args)
+    public function delete(Request $request, Response $response, array $args): Response
     {
-
         // Get the alert message stream
         $ms = $this->ci->alerts;
 
+        // Get the target object & make sure a project was found.
+        if (!$project = Project::find($args['project_id'])) {
+            throw new NotFoundException('Project not found');
+        }
+
         // Delete the project
         // This is where you would delete the project from the database
+        // $project->delete();
 
         // Nice and simple message
         $ms->addMessageTranslated('success', 'Project successfully deleted (or not)');
 
-        return $response->withJson([], 200, JSON_PRETTY_PRINT);
+        return $response->withJson([]);
     }
 }

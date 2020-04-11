@@ -1,6 +1,25 @@
 # Form Generator Sprinkle Example
 
-[![StyleCI](https://github.styleci.io/repos/80257783/shield?branch=master)](https://github.styleci.io/repos/80257783) [![UserFrosting Version](https://img.shields.io/badge/UserFrosting->=%204.3-brightgreen.svg)](https://github.com/userfrosting/UserFrosting) [![Donate](https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-brightgreen.svg)](https://ko-fi.com/A7052ICP)
+[![Donate][kofi-badge]][kofi]
+[![Latest Version][releases-badge]][releases]
+[![UserFrosting Version][uf-version]][uf]
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE)
+[![Travis][travis-badge]][travis]
+[![Codecov][codecov-badge]][codecov]
+[![StyleCI][styleci-badge]][styleci]
+
+[kofi]: https://ko-fi.com/A7052ICP
+[kofi-badge]: https://img.shields.io/badge/Donate-Buy%20Me%20a%20Coffee-blue.svg
+[releases]: https://github.com/lcharette/UF_FormGeneratorExample/releases
+[releases-badge]: https://img.shields.io/github/release/lcharette/UF_FormGeneratorExample.svg
+[uf-version]: https://img.shields.io/badge/UserFrosting->=%204.3-brightgreen.svg
+[uf]: https://github.com/userfrosting/UserFrosting
+[travis]: https://travis-ci.org/lcharette/UF_FormGeneratorExample
+[travis-badge]: https://travis-ci.org/lcharette/UF_FormGeneratorExample.svg?branch=master
+[codecov]: https://codecov.io/gh/lcharette/UF_FormGeneratorExample
+[codecov-badge]: https://codecov.io/gh/lcharette/UF_FormGeneratorExample/branch/master/graph/badge.svg
+[styleci]: https://styleci.io/repos/80257783
+[styleci-badge]: https://styleci.io/repos/80257783/shield?branch=master&style=flat
 
 This Sprinkle provides a summary example on how to use the [FormGenerator](https://github.com/lcharette/UF_FormGenerator) sprinkle for [UserFrosting 4](https://www.userfrosting.com).
 
@@ -9,12 +28,12 @@ This Sprinkle provides a summary example on how to use the [FormGenerator](https
 If you need help using this sprinkle or found any bug, feels free to open an issue or submit a pull request. You can also find me on the [UserFrosting Chat](https://chat.userfrosting.com/) most of the time for direct support.
 
 # Installation
-Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^3.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
+Edit UserFrosting `app/sprinkles.json` file and add the following to the `require` list : `"lcharette/uf_formgeneratorexample": "^4.0.0"`. Also add `FormGenerator` and `FormGeneratorExample` to the `base` list. For example:
 
-```
+```json
 {
     "require": {
-        "lcharette/uf_formgeneratorexample": "^3.0.0"
+        "lcharette/uf_formgeneratorexample": "^4.0.0"
     },
     "base": [
         "core",
@@ -33,11 +52,11 @@ Navigate to `http://YourDomain.com/formgenerator`.
 
 This demo is not linked to any database tables, so changes are not actually saved ;)
 
-![Screenshot 1](/screenshots/UF_FormGeneratorExample1.png?raw=true)
-![Screenshot 2](/screenshots/UF_FormGeneratorExample2.png?raw=true)
-![Screenshot 3](/screenshots/UF_FormGeneratorExample3.png?raw=true)
-![Screenshot 4](/screenshots/UF_FormGeneratorExample4.png?raw=true)
+![Screenshot 1](/.github/screenshots/UF_FormGeneratorExample1.png?raw=true)
+![Screenshot 2](/.github/screenshots/UF_FormGeneratorExample2.png?raw=true)
+![Screenshot 3](/.github/screenshots/UF_FormGeneratorExample3.png?raw=true)
+![Screenshot 4](/.github/screenshots/UF_FormGeneratorExample4.png?raw=true)
 
 # Licence
 
-By [Louis Charette](https://github.com/lcharette). Copyright (c) 2017, free to use in personal and commercial software as per the MIT license.
+By [Louis Charette](https://bbqsoftwares.com). Copyright (c) 2020, free to use in personal and commercial software as per the MIT license.

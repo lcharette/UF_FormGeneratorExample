@@ -1,5 +1,12 @@
 # Change Log
 
+## 4.0.0
+- Updated for FormGenerator 4.0.0.
+- Moved demo project object to a class.
+- Stricter PHP7 type throughout.
+- Added tests with 100% coverage!
+- Added PHP-CS-Fixer, PHPStan, StyleCI & Travis configuration.
+
 ## 3.0.0
 - Update FormGenerator version to 3.0.0
 - Updated icons to FontAwesome 5
