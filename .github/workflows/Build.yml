@@ -38,9 +38,9 @@ jobs:
           coverage: xdebug
           tools: pecl, composer:v1
 
-      # - uses: actions/setup-node@v2
-      #   with:
-      #     node-version: 10
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 10
 
       - name: Clone UserFrosting
         run: | 
@@ -69,8 +69,8 @@ jobs:
       # - name: Migrate DB
       #   run: php bakery migrate
 
-      # - name: Build Assets
-      #   run: php bakery build-assets
+      - name: Build Assets
+        run: php bakery build-assets
 
       - name: Execute tests
         run: app/vendor/bin/phpunit -c app/sprinkles/FormGeneratorExample/phpunit.xml --coverage-clover=app/sprinkles/FormGeneratorExample/coverage.xml
